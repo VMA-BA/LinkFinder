@@ -130,10 +130,10 @@ def send_request(url):
     q.add_header('Cookie', args.cookies)
 
     try:
-        sslcontext = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+        sslcontext = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
         response = urlopen(q, timeout=args.timeout, context=sslcontext)
     except:
-        sslcontext = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
+        sslcontext = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
         response = urlopen(q, timeout=args.timeout, context=sslcontext)
 
     if response.info().get('Content-Encoding') == 'gzip':
